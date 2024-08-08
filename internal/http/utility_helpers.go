@@ -1,14 +1,16 @@
 package http
 
-import "net/http"
+import (
+	"net/http"
+)
 
-func handleReadiness(w http.ResponseWriter, _ *http.Request) {
+func HandleReadiness(w http.ResponseWriter, _ *http.Request) {
 	type returnJson struct {
 		Status string `json:"status"`
 	}
-	respondWithJSON(w, http.StatusOK, returnJson{Status: "ok"})
+	RespondWithJSON(w, http.StatusOK, returnJson{Status: "ok"})
 }
 
-func handleError(w http.ResponseWriter, _ *http.Request) {
-	respondWithError(w, http.StatusInternalServerError, "Internal Server Error")
+func HandleError(w http.ResponseWriter, _ *http.Request) {
+	RespondWithError(w, http.StatusInternalServerError, "Internal Server Error")
 }

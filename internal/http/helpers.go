@@ -9,15 +9,15 @@ type errorReturn struct {
 	Error string `json:"error"`
 }
 
-func respondWithError(w http.ResponseWriter, code int, message string) {
+func RespondWithError(w http.ResponseWriter, code int, message string) {
 	errorReturn := errorReturn{Error: message}
-	respondWithJSON(w, code, errorReturn)
+	RespondWithJSON(w, code, errorReturn)
 }
 
-func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
+func RespondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	response, err := json.Marshal(payload)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Error marshalling JSON")
+		RespondWithError(w, http.StatusInternalServerError, "Error marshalling JSON")
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
